@@ -1,5 +1,6 @@
 import java.util.*;
 
+// Lenny's Lucky Lotto Lists.
 public class ProblemC {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);

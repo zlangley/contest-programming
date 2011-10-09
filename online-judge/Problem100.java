@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+// The 3n + 1 problem.
 public class Problem100 {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);

@@ -1,5 +1,6 @@
 import java.util.*;
 
+// Push Button Lock.
 public class ProblemD {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
