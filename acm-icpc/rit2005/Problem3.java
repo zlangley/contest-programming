@@ -143,24 +143,22 @@ findIntermediatePoint:
 	public static boolean segmentsIntersect(int x1, int y1, int x2, int y2,
 			int x3, int y3, int x4, int y4) {
 
-		final double EPS = 0.000001;
+		int denom = (y4 - y3)*(x2 - x1) - (x4 - x3)*(y2 - y1);
+		int numa = (x4 - x3)*(y1 - y3) - (y4 - y3)*(x1 - x3);
+		int numb = (x2 - x1)*(y1 - y3) - (y2 - y1)*(x1 - x3);
 
-		double denom = (y4 - y3)*(x2 - x1) - (x4 - x3)*(y2 - y1);
-		double numa = (x4 - x3)*(y1 - y3) - (y4 - y3)*(x1 - x3);
-		double numb = (x2 - x1)*(y1 - y3) - (y2 - y1)*(x1 - x3);
-
-
-		if (Math.abs(numa) < EPS && Math.abs(numb) < EPS && Math.abs(denom) < EPS) {
+		if (numa == 0 && numb == 0 && denom == 0) {
 			// Lines are the same.
 			return true;
-		} else if (Math.abs(denom) < EPS) {
+		} else if (denom == 0) {
 			// Lines are parallel.
 			return false;
 		}
 
-		double ma = numa / denom;
-		double mb = numb / denom;
+		double ma = (double)numa / denom;
+		double mb = (double)numb / denom;
 
+		final double EPS = 0.000001;
 		return ma >= -EPS && ma <= 1 + EPS && mb >= -EPS && mb <= 1 + EPS;
 	}
 }
