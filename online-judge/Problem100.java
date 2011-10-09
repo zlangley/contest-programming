@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class The3nPlus1Problem {
+public class Problem100 {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		table[1] = 1;
