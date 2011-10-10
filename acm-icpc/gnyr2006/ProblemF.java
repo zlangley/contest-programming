@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 
 // Visible Lattice Points.
 public class ProblemF {

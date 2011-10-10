@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 
 // Triangular Sums.
 public class ProblemB {

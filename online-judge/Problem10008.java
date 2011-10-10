@@ -1,4 +1,6 @@
-import java.util.*;
+import java.util.Scanner;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 // What's Cryptanalysis?
 public class Problem10008 {

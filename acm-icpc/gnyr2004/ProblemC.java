@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 
 // Lenny's Lucky Lotto Lists.
 public class ProblemC {
