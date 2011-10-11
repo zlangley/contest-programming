@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 // Funny Encryption Method.
-public class Problem10019 {
+class Main {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 

@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.math.BigInteger;
 
 // Distinct Subsequences.
-public class Problem10069 {
+class Main {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		

@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 // Ecological Bin Packing.
-public class Problem102 {
+class Main {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 

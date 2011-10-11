@@ -3,7 +3,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 // What's Cryptanalysis?
-public class Problem10008 {
+class Main {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 

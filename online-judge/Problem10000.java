@@ -4,7 +4,7 @@ import java.util.Queue;
 import java.util.Scanner;
 
 // Longest Paths.
-public class Problem10000 {
+class Main {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 

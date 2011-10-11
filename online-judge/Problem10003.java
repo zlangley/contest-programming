@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 // Cutting Sticks.
-public class Problem10003 {
+class Main {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		
