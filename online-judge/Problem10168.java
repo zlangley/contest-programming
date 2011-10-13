@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+// Summation of Four Primes
 class Main {
 	static int[] primes = new int[446];
 	static boolean[] isPrime = new boolean[3162];
