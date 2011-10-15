@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 // Unidirectional TSP.
@@ -21,7 +22,8 @@ class Main {
 				for (int r = 0; r < rows; r++) {
 					int upRow = (rows + r - 1) % rows;
 					int downRow = (r + 1) % rows;
-					m[r][c] += Math.min(Math.min(m[r][c - 1], m[upRow][c - 1]), m[downRow][c - 1]);
+					m[r][c] += Math.min(m[downRow][c - 1], 
+							Math.min(m[r][c - 1], m[upRow][c - 1]));
 				}
 			}
 
@@ -40,34 +42,19 @@ class Main {
 			while (c != 0) {
 				// Must be careful here to find solution with smallest 
 				// lexicographical order.
-				int upRow = (m.length + r - 1) % m.length;
-				int downRow = (r + 1) % m.length;
+				int upRow = (rows + r - 1) % rows;
+				int downRow = (r + 1) % rows;
 
-				int lowRow = upRow;
-				int midRow = r;
-				int highRow = downRow;
+				int[] rs = { upRow, r, downRow };
+				Arrays.sort(rs);
 
-				if (upRow == downRow) {
-					lowRow = Math.min(upRow, r);
-					midRow = Math.max(upRow, r);
-				} else if (downRow < upRow) {
-					if (r < downRow) {
-						lowRow = r;
-						midRow = downRow;
-						highRow = upRow;
-					} else {
-						lowRow = downRow;
-						midRow = upRow;
-						highRow = r;
-					}
-				}
-
-				if (m[lowRow][c - 1] <= m[midRow][c - 1] && m[lowRow][c - 1] <= m[highRow][c - 1])
-					r = lowRow;
-				else if (m[midRow][c - 1] <= m[highRow][c - 1] && m[midRow][c - 1] <= m[lowRow][c - 1])
-					r = midRow;
+				if (m[rs[0]][c - 1] <= m[rs[1]][c - 1] &&
+					   	m[rs[0]][c - 1] <= m[rs[2]][c - 1])
+					r = rs[0];
+				else if (m[rs[1]][c - 1] <= m[rs[2]][c - 1])
+					r = rs[1];
 				else
-					r = highRow;
+					r = rs[2];
 
 				System.out.print(" " + (r + 1));
 				c--;
