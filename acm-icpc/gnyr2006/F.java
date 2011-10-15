@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 // Visible Lattice Points.
-public class ProblemF {
+public class F {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 
