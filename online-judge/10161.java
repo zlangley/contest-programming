@@ -28,7 +28,7 @@ class Main {
 			if (border % 2 == 1) {
 				long temp = x;
 				x = y;
-				y = temp;	   
+				y = temp;
 			}
 
 			System.out.println(x + " " + y);

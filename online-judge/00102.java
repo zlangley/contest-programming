@@ -33,9 +33,9 @@ class Main {
 
 						if (moves < minCost) {
 							minCost = moves;
-							maxOrder[i] = 'B'; 
-							maxOrder[j] = 'G'; 
-							maxOrder[k] = 'C'; 
+							maxOrder[i] = 'B';
+							maxOrder[j] = 'G';
+							maxOrder[k] = 'C';
 						} else if (moves == minCost) {
 							char[] order = new char[3];
 							order[i] = 'B';
