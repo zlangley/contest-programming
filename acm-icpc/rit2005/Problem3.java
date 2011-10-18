@@ -25,12 +25,12 @@ public class Problem3 {
 					pointInBox[x][y] = true;
 		}
 
-		// m[x1][y1][x2][y2][d] = true if it is possible to get from (x1, y1) to (x2, y2) in
-		// d steps.
+		// m[x1][y1][x2][y2][d] = true if it is possible to get from (x1, y1) to (x2, y2) in d
+		// steps.
 		boolean m[][][][][] = new boolean[width][height][width][height][numLines + 1];
 
-		// Set m[x1][y1][x2][y2][1] to true for all pairs of (x1, y1) and (x2, y2)
-		// that can "see" each other.
+		// Set m[x1][y1][x2][y2][1] to true for all pairs of (x1, y1) and (x2, y2) that can "see"
+		// each other.
 		for (int p1 = 0; p1 < width * height; p1++) {
 			int x1 = p1 % width;
 			int y1 = p1 / width;
@@ -68,10 +68,9 @@ public class Problem3 {
 					if (pointInBox[x2][y2])
 						continue;
 
-					// Try to find a midpoint (x3, y3) such that we can get from
-					// (x1, y1) to (x3, y3) in i steps and from (x3, y3) to (x2, y2)
-					// in d-i steps.  If we can find such a point, clearly we can
-					// get to (x1, y1) to (x2, y2) in d steps.
+					// Try to find a midpoint (x3, y3) such that we can get from (x1, y1) to
+					// (x3, y3) in i steps and from (x3, y3) to (x2, y2) // in d-i steps.  If we can
+					// find such a point, clearly we can get to (x1, y1) to (x2, y2) in d steps.
 findIntermediatePoint:
 					for (int x3 = 0; x3 < width; x3++) {
 						for (int y3 = 0; y3 < height; y3++) {
@@ -131,14 +130,14 @@ findIntermediatePoint:
 
 
 	/*
-	 * We can paramaterize a line by L = P1 + m(P2 - P1).  If we let m be in the
-	 * interval [0, 1], we paramaterize the line segment from P1 to P2.  Therefore,
-	 * we can solve the equation to determine where the segments intersect.
+	 * We can paramaterize a line by L = P1 + m(P2 - P1).  If we let m be in the interval [0, 1], we
+	 * paramaterize the line segment from P1 to P2.  Therefore, we can solve the equation to
+	 * determine where the segments intersect.
 	 * 
 	 *                       P1 + ma(P2 - P1) = P3 + mb(P4 - P3)
 	 *
-	 * We can determine if the segments intersect by determining if ma and mb are
-	 * in the range [0, 1].
+	 * We can determine if the segments intersect by determining if ma and mb are in the range
+	 * [0, 1].
 	 */
 	public static boolean segmentsIntersect(int x1, int y1, int x2, int y2,
 			int x3, int y3, int x4, int y4) {

@@ -12,12 +12,13 @@ class Main {
 
 			if (!isPrime(n)) {
 				boolean normal = false;
-				for (int a = 2; a < n; a++)
+				for (int a = 2; a < n; a++) {
 					if (pow(a, n, n) != a) {
 						System.out.println(n + " is normal.");
 						normal = true;
 						break;
 					}
+				}
 				if (!normal)
 					System.out.println("The number " + n + " is a Carmichael number.");
 			} else

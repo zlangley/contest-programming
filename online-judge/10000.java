@@ -45,15 +45,16 @@ class Main {
 				} else if (dist == max[v] && v < fin)
 					fin = v;
 
-				for (int u : edges.get(v))
+				for (int u : edges.get(v)) {
 					if (max[u] < max[v] + 1) {
 						max[u] = max[v] + 1;
 						q.offer(u);
 					}
+				}
 			}
 
-			System.out.println("Case " + (k + 1) + ": The longest path from "
-					+ (s + 1) + " has length " + dist + ", finishing at " + (fin + 1) + ".");
+			System.out.println("Case " + (k + 1) + ": The longest path from " + (s + 1) +
+					" has length " + dist + ", finishing at " + (fin + 1) + ".");
 			System.out.println();
 		}
 	}

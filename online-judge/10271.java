@@ -22,8 +22,8 @@ class Main {
 
 			for (int c = 1; c < m[0].length; c++) {
 				for (int r = 3*c; r < m.length; r++) {
-					int sqrtBadness = sticks[r - 1] - sticks[r];
-					m[r][c] = Math.min(m[r - 1][c], m[r - 2][c - 1] + sqrtBadness*sqrtBadness);
+					int sqrtBad = sticks[r - 1] - sticks[r];
+					m[r][c] = Math.min(m[r - 1][c], m[r - 2][c - 1] + sqrtBad*sqrtBad);
 				}
 			}
 

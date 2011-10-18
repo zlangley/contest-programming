@@ -28,8 +28,7 @@ class Main {
 						if (k == i || k == j)
 							continue;
 
-						int moves = sum[0] - bins[i][0] + sum[1]
-						   	- bins[j][1] + sum[2] - bins[k][2];
+						int moves = sum[0] - bins[i][0] + sum[1] - bins[j][1] + sum[2] - bins[k][2];
 
 						if (moves < minCost) {
 							minCost = moves;
@@ -43,8 +42,7 @@ class Main {
 							order[k] = 'C';
 							if (order[0] < maxOrder[0])
 								maxOrder = order;
-							else if (order[0] == maxOrder[0] &&
-								   	order[1] < maxOrder[1])
+							else if (order[0] == maxOrder[0] && order[1] < maxOrder[1])
 								maxOrder = order;
 						}
 					}
