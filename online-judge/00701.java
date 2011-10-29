@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+// The Archeologists' Dilemma.
 class Main {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
