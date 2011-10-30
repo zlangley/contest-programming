@@ -1,0 +1,26 @@
+TODO:
+
+Graph algorithms:
+- Topological sort
+- Strongly connected components
+- Single-source shortest path (Dijkstra)
+- Single-source shortest path with negative weights (Bellman-Ford)
+- All pairs shortest path (Floyd-Warshall)
+- Minimum spanning trees (Kruskal)
+- Maximum flow (Edmonds-Karp)
+
+Dynamic programming:
+- Longest commong subsequence
+- Edit distance
+
+Number theory:
+- Modular exponentiation
+- Greatest common divisor
+
+Geometry:
+- Intersection of line segments
+- Circle determined by 3 points
+- Convex hull
+
+Other:
+- k-Select
