@@ -8,6 +8,11 @@ public class WeightedGraph {
 			adjacencyMap.add(new HashMap<Integer, Integer>());
 	}
 
+	public WeightedGraph(WeightedGraph g) {
+		for (int i = 0; i < g.vertexCount(); i++)
+			adjacencyMap.add(new HashMap<Integer, Integer>(g.adjacencyMap.get(i)));
+	}
+
 	public Set<Integer> getNeighbors(int v) {
 		return adjacencyMap.get(v).keySet();
 	}
@@ -16,8 +21,16 @@ public class WeightedGraph {
 		return adjacencyMap.get(u).get(v);
 	}
 
+	public void setEdgeWeight(int u, int v, int weight) {
+		addDirectedEdge(u, v, weight);
+	}
+
 	public int vertexCount() {
 		return adjacencyMap.size();
+	}
+
+	public boolean existsEdge(int u, int v) {
+		return adjacencyMap.get(u).containsKey(v);
 	}
 
 	public void addDirectedEdge(int u, int v, int weight) {
@@ -27,5 +40,14 @@ public class WeightedGraph {
 	public void addUndirectedEdge(int u, int v, int weight) {
 		addDirectedEdge(u, v, weight);
 		addDirectedEdge(v, u, weight);
+	}
+
+	public String toString() {
+		String s = "";
+		for (int i = 0; i < adjacencyMap.size(); i++) {
+			s += i + ": \n";
+			s += "\t" + adjacencyMap.get(i) + "\n";
+		}
+		return s;
 	}
 }
