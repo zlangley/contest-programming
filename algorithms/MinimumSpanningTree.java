@@ -9,7 +9,7 @@ public class MinimumSpanningTree {
 		Arrays.fill(dist, Integer.MAX_VALUE);
 		dist[s] = 0;
 
-		for (int i = 0; i < dist.length; i++) {
+		for (int i = 0; i < g.vertexCount(); i++) {
 			int next = nextVertex(dist, visited);
 			visited[next] = true;
 
