@@ -1,0 +1,37 @@
+/*
+ * The center of a circumscribed circle is the intersection of the perpendicular
+ * bisectors of that circle.
+ */
+public static double[] circleFromThreePoints(double x1, double y1, double x2, double y2, double x3, double y3) {
+    double dx_12 = x2 - x1;
+    double dy_12 = y2 - y1;
+
+    double normal_12_x = -dy_12;
+    double normal_12_y = dx_12;
+
+    double dx_23 = x3 - x2;
+    double dy_23 = y3 - y2;
+
+    double normal_23_x = -dy_23;
+    double normal_23_y = dx_23;
+
+    double mid_12_x = (x1 + x2) / 2;
+    double mid_12_y = (y1 + y2) / 2;
+    
+    double mid_23_x = (x3 + x2) / 2;
+    double mid_23_y = (y3 + y2) / 2;
+
+    double mid_12_w = -1 * (mid_12_x*dx_12 + mid_12_y*dy_12);
+    double mid_23_w = -1 * (mid_23_x*dx_23 + mid_23_y*dy_23);
+
+    double cen_x = dy_12 * mid_23_w - mid_12_w * dy_23;
+    double cen_y = mid_12_w * dx_23 - dx_12 * mid_23_w;
+    double cen_w = dx_12 * dy_23 - dy_12 * dx_23;
+    
+	return new double[] { 
+		cen_x / cen_w, 
+		cen_y / cen_w,
+		Math.sqrt((circ.x - x1)*(circ.x - x1) + (circ.y - y1)*(circ.y - y1))
+	};
+  }
+}

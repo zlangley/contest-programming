@@ -26,9 +26,9 @@ public class LineIntersection {
     double iy = l1w*l2x - l1x*l2w;
     double iw = l1x*l2y - l1y*l2x;
 
-	System.out.println("ix = " + ix);
-	System.out.println("iy = " + iy);
-	System.out.println("iw = " + iw);
+    System.out.println("ix = " + ix);
+    System.out.println("iy = " + iy);
+    System.out.println("iw = " + iw);
 
     return new Point2D.Double(ix/iw, iy/iw);
   }
