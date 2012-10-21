@@ -44,61 +44,61 @@ public class ShortestPaths {
                     d[v] = newDist;
                     pi[v] = min.v;
 
-                    Vertex vertex = new Vertex(v, dist[v]);
+                    Vertex vertex = new Vertex(v, d[v]);
                     q.remove(vertex);
                     q.add(vertex);
                 }
             }
         }
 
-        return new int[][] { dist, previous };
+        return new int[][] { d, pi };
     }
 
     // SSSP neg. edge weights
     // to check for neg cycle, run this alg, then see if any edges
     // can still be relaxed
     public static int[][] bellmanFord(WeightedGraph g, int s) {
-        int[] dist = new int[g.vertexCount()];
-        int[] previous = new int[g.vertexCount()];
+        int[] d = new int[g.vertexCount()];
+        int[] pi = new int[g.vertexCount()];
 
         for (int v = 0; v < g.vertexCount(); v++) {
-            dist[v] = Integer.MAX_VALUE;
-            previous[v] = -1;
+            d[v] = Integer.MAX_VALUE;
+            pi[v] = -1;
         }
 
-        dist[s] = 0;
+        d[s] = 0;
 
         for (int i = 0; i < g.vertexCount() - 1; i++) {
             for (int v = 0; v < g.vertexCount(); v++) {
                 for (int u : g.getNeighbors(v)) {
-                    if (dist[u] > dist[v] + g.getEdgeWeight(u, v)) {
-                        dist[u] = dist[v] + g.getEdgeWeight(u, v);
-                        previous[u] = v;
+                    if (d[u] > d[v] + g.getEdgeWeight(u, v)) {
+                        d[u] = d[v] + g.getEdgeWeight(u, v);
+                        pi[u] = v;
                     }
                 }
             }
         }
 
-        return new int[][] { dist, previous };
+        return new int[][] { d, pi };
     }
 
     // APSP
     public static int[][] floydWarshall(WeightedGraph g) {
-        int[][] dist = new int[g.vertexCount()][g.vertexCount()];
+        int[][] d = new int[g.vertexCount()][g.vertexCount()];
 
         for (int i = 0; i < g.vertexCount(); i++)
             for (int j = i + 1; j < g.vertexCount(); j++)
                 if (g.edgeExists(i, j))
-                    dist[i][j] = g.getEdgeWeight(i, j);
+                    d[i][j] = g.getEdgeWeight(i, j);
                 else
-                    dist[i][j] = Integer.MAX_VALUE;
+                    d[i][j] = Integer.MAX_VALUE;
 
-        for (int k = 0; k < dist.length; k++)
-            for (int i = 0; i < dist.length; i++)
-                for (int j = i; j < dist.length; j++)
-                    dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
+        for (int k = 0; k < d.length; k++)
+            for (int i = 0; i < d.length; i++)
+                for (int j = i; j < d.length; j++)
+                    d[i][j] = Math.min(d[i][j], d[i][k] + d[k][j]);
 
-        return dist;
+        return d;
     }
 
     public static void main(String[] args) {
