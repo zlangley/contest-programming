@@ -20,26 +20,29 @@ public class ShortestPaths {
         }
     }
 
+    // SSSP positive edge weights
     public static int[][] dijkstra(WeightedGraph g, int s) {
-        int[] dist = new int[g.vertexCount()];
-        int[] previous = new int[g.vertexCount()];
+        int[] d = new int[g.vertexCount()]; // dist
+        int[] pi = new int[g.vertexCount()]; // previous; only needed to reconstruct path
 
         for (int v = 0; v < g.vertexCount(); v++) {
-            dist[v] = Integer.MAX_VALUE;
-            previous[v] = -1;
+            d[v] = Integer.MAX_VALUE;
+            pi[v] = -1;
         }
 
-        dist[s] = 0;
+        d[s] = 0;
 
         TreeSet<Vertex> q = new TreeSet<Vertex>();
         q.add(new Vertex(s, 0));
 
         while (!q.isEmpty()) {
             Vertex min = q.pollFirst();
+            int u = min.v;
             for (int v : g.getNeighbors(min.v)) {
-                if (dist[v] > dist[min.v] + g.getEdgeWeight(v, min.v)) {
-                    dist[v] = dist[min.v] + g.getEdgeWeight(v, min.v);
-                    previous[v] = min.v;
+                int newDist = d[u] + g.getEdgeWeight(u, v);
+                if (d[v] > newDist) {
+                    d[v] = newDist;
+                    pi[v] = min.v;
 
                     Vertex vertex = new Vertex(v, dist[v]);
                     q.remove(vertex);
@@ -51,6 +54,9 @@ public class ShortestPaths {
         return new int[][] { dist, previous };
     }
 
+    // SSSP neg. edge weights
+    // to check for neg cycle, run this alg, then see if any edges
+    // can still be relaxed
     public static int[][] bellmanFord(WeightedGraph g, int s) {
         int[] dist = new int[g.vertexCount()];
         int[] previous = new int[g.vertexCount()];
@@ -76,7 +82,24 @@ public class ShortestPaths {
         return new int[][] { dist, previous };
     }
 
+    // APSP
+    public static int[][] floydWarshall(WeightedGraph g) {
+        int[][] dist = new int[g.vertexCount()][g.vertexCount()];
 
+        for (int i = 0; i < g.vertexCount(); i++)
+            for (int j = i + 1; j < g.vertexCount(); j++)
+                if (g.edgeExists(i, j))
+                    dist[i][j] = g.getEdgeWeight(i, j);
+                else
+                    dist[i][j] = Integer.MAX_VALUE;
+
+        for (int k = 0; k < dist.length; k++)
+            for (int i = 0; i < dist.length; i++)
+                for (int j = i; j < dist.length; j++)
+                    dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
+
+        return dist;
+    }
 
     public static void main(String[] args) {
         WeightedGraph g = new WeightedGraph(7);

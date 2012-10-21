@@ -6,14 +6,13 @@ public class PrimeSieve {
         for (int i = 2; i < isPrime.length; i++)
             isPrime[i] = true;
 
-        for (int i = 2; i*i < isPrime.length; i++)
-            if (isPrime[i])
+        int p = 0;
+        for (int i = 2; i*i < isPrime.length; i++) {
+            if (isPrime[i]) {
+                primes[p++] = i;
                 for (int j = 2*i; j < isPrime.length; j += i)
                     isPrime[j] = false;
-
-        int p = 0;
-        for (int i = 0; i < isPrime.length; i++)
-            if (isPrime[i])
-                primes[p++] = i;
+            }
+        }
     }
 }

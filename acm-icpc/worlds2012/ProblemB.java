@@ -10,13 +10,13 @@ class Main {
             for (int i = 0; i <= n; i++)
                 coef[i] = scan.nextDouble();
 
-            double xlow = scan.nextDouble();
-            double xhigh = scan.nextDouble();
+            double xLow = scan.nextDouble();
+            double xHigh = scan.nextDouble();
             int inc = scan.nextInt();
 
             Polynomial p = new Polynomial(coef);
             p = p.square().multiply(Math.PI);
-            double totalVolume = p.integrate(xlow, xhigh);
+            double totalVolume = p.integrate(xLow, xHigh);
 
             System.out.printf("Case %d: %.2f\n", k, totalVolume);
             if (totalVolume < inc) {
@@ -26,25 +26,25 @@ class Main {
 
             double guess;
             double tickVolume;
-            double tickMax = xhigh;
-            double tickMin = xlow;
-            double lastGuess = xlow;
+            double tickHigh = xHigh;
+            double tickLow = xLow;
+            double prevTick = xLow;
 
             String ticks = "";
-            for (int i = 0; i < 8 && p.integrate(lastGuess, xhigh) > inc; i++) {
+            for (int i = 0; i < 8 && p.integrate(prevTick, xHigh) > inc; i++) {
                 do {
-                    guess = (tickMax + tickMin)/2;
-                    tickVolume = p.integrate(lastGuess, guess);
+                    guess = (tickHigh + tickLow)/2;
+                    tickVolume = p.integrate(prevTick, guess);
                     if (tickVolume < inc)
-                        tickMin = guess;
+                        tickLow = guess;
                     else
-                        tickMax = guess;
+                        tickHigh = guess;
                 } while (Math.abs(tickVolume - inc) > 0.001);
 
-                ticks += String.format("%.2f ", guess - xlow);
-                lastGuess = guess;
-                tickMin = guess;
-                tickMax = xhigh;
+                ticks += String.format("%.2f ", guess - xLow);
+                prevTick = guess;
+                tickLow = guess;
+                tickHigh = xHigh;
             }
             System.out.println(ticks.trim());
         }
