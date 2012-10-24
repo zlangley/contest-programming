@@ -1,6 +1,6 @@
 public class PrimeSieve {
     static int[] primes = new int[446];
-    static int[] isPrime = new int[3162];
+    static boolean[] isPrime = new boolean[3162];
 
     static {
         for (int i = 2; i < isPrime.length; i++)
