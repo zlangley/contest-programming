@@ -21,7 +21,7 @@ public class ShortestPaths {
     }
 
     // SSSP positive edge weights
-    public static int[][] dijkstra(WeightedGraph g, int s) {
+    public static int[][] dijkstra(WeightedDigraph g, int s) {
         int[] d = new int[g.vertexCount()]; // dist
         int[] pi = new int[g.vertexCount()]; // previous; only needed to reconstruct path
 
@@ -57,7 +57,7 @@ public class ShortestPaths {
     // SSSP neg. edge weights
     // to check for neg cycle, run this alg, then see if any edges
     // can still be relaxed
-    public static int[][] bellmanFord(WeightedGraph g, int s) {
+    public static int[][] bellmanFord(WeightedDigraph g, int s) {
         int[] d = new int[g.vertexCount()];
         int[] pi = new int[g.vertexCount()];
 
@@ -83,12 +83,12 @@ public class ShortestPaths {
     }
 
     // APSP
-    public static int[][] floydWarshall(WeightedGraph g) {
+    public static int[][] floydWarshall(WeightedDigraph g) {
         int[][] d = new int[g.vertexCount()][g.vertexCount()];
 
         for (int i = 0; i < g.vertexCount(); i++)
             for (int j = i + 1; j < g.vertexCount(); j++)
-                if (g.edgeExists(i, j))
+                if (g.hasEdge(i, j))
                     d[i][j] = g.getEdgeWeight(i, j);
                 else
                     d[i][j] = Integer.MAX_VALUE;
@@ -103,14 +103,14 @@ public class ShortestPaths {
 
     public static void main(String[] args) {
         WeightedGraph g = new WeightedGraph(7);
-        g.addUndirectedEdge(1, 2, 7);
-        g.addUndirectedEdge(1, 3, 9);
-        g.addUndirectedEdge(1, 6, 14);
-        g.addUndirectedEdge(2, 4, 15);
-        g.addUndirectedEdge(3, 4, 11);
-        g.addUndirectedEdge(3, 6, 2);
-        g.addUndirectedEdge(4, 5, 6);
-        g.addUndirectedEdge(5, 6, 9);
+        g.addEdge(1, 2, 7);
+        g.addEdge(1, 3, 9);
+        g.addEdge(1, 6, 14);
+        g.addEdge(2, 4, 15);
+        g.addEdge(3, 4, 11);
+        g.addEdge(3, 6, 2);
+        g.addEdge(4, 5, 6);
+        g.addEdge(5, 6, 9);
 
         int[][] d = dijkstra(g, 1);
         System.out.println(Arrays.toString(d[0]));

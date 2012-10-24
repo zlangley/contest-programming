@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class MaxFlow {
-    public static int edmondsKarp(WeightedGraph g, int s, int t) {
-        WeightedGraph r = new WeightedGraph(g);
+    public static int edmondsKarp(WeightedDigraph g, int s, int t) {
+        WeightedDigraph r = new WeightedDigraph(g);
 
         while (true) {
             // Find augmenting path with BFS.
@@ -35,8 +35,8 @@ public class MaxFlow {
                             // If we made it to t, update the risudual graph.
                             while (parent[v] != v) {
                                 int w = parent[v];
-                                if (!r.existsEdge(v, w))
-                                    r.addDirectedEdge(v, w, 0);
+                                if (!r.hasEdge(v, w))
+                                    r.addEdge(v, w, 0);
 
                                 r.setEdgeWeight(w, v, r.getEdgeWeight(w, v) - maxCapacity[t]);
                                 r.setEdgeWeight(v, w, r.getEdgeWeight(v, w) + maxCapacity[t]);
@@ -60,16 +60,16 @@ public class MaxFlow {
 
 
     public static void main(String[] args) {
-        WeightedGraph g = new WeightedGraph(6);
+        WeightedDigraph g = new WeightedDigraph(6);
 
-        g.addDirectedEdge(0, 1, 3);
-        g.addDirectedEdge(0, 2, 3);
-        g.addDirectedEdge(1, 3, 3);
-        g.addDirectedEdge(1, 2, 2);
-        g.addDirectedEdge(2, 4, 2);
-        g.addDirectedEdge(3, 4, 4);
-        g.addDirectedEdge(3, 5, 2);
-        g.addDirectedEdge(4, 5, 3);
+        g.addEdge(0, 1, 3);
+        g.addEdge(0, 2, 3);
+        g.addEdge(1, 3, 3);
+        g.addEdge(1, 2, 2);
+        g.addEdge(2, 4, 2);
+        g.addEdge(3, 4, 4);
+        g.addEdge(3, 5, 2);
+        g.addEdge(4, 5, 3);
 
         int maxFlow = edmondsKarp(g, 0, 5);
         System.out.println(maxFlow);

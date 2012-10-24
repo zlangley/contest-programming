@@ -24,7 +24,7 @@ public class MinimumSpanningTree {
 
         WeightedGraph mst = new WeightedGraph(g.vertexCount());
         for (int i = 1; i < g.vertexCount(); i++)
-            mst.addUndirectedEdge(i, parent[i], g.getEdgeWeight(i, parent[i]));
+            mst.addEdge(i, parent[i], g.getEdgeWeight(i, parent[i]));
         return mst;
     }
 
@@ -42,17 +42,17 @@ public class MinimumSpanningTree {
 
     public static void main(String[] args) {
         WeightedGraph g = new WeightedGraph(7);
-        g.addUndirectedEdge(0, 1, 7);
-        g.addUndirectedEdge(0, 3, 5);
-        g.addUndirectedEdge(1, 2, 8);
-        g.addUndirectedEdge(1, 3, 9);
-        g.addUndirectedEdge(1, 4, 7);
-        g.addUndirectedEdge(2, 4, 5);
-        g.addUndirectedEdge(3, 4, 15);
-        g.addUndirectedEdge(3, 5, 6);
-        g.addUndirectedEdge(4, 5, 8);
-        g.addUndirectedEdge(4, 6, 9);
-        g.addUndirectedEdge(5, 6, 11);
+        g.addEdge(0, 1, 7);
+        g.addEdge(0, 3, 5);
+        g.addEdge(1, 2, 8);
+        g.addEdge(1, 3, 9);
+        g.addEdge(1, 4, 7);
+        g.addEdge(2, 4, 5);
+        g.addEdge(3, 4, 15);
+        g.addEdge(3, 5, 6);
+        g.addEdge(4, 5, 8);
+        g.addEdge(4, 6, 9);
+        g.addEdge(5, 6, 11);
 
         WeightedGraph mst = prim(g, 0);
         System.out.println(mst);
