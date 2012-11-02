@@ -1,0 +1,24 @@
+m = 10001 = 137*73
+
+x[1] = input1
+x[2] = output1 (unknown)
+x[3] = input2
+x[4] = output2 (unknown)
+x[5] = input3
+
+x[n] = (a * x[n-1] + b) % 10001
+
+x[1] = (a * x[0] + b) % 10001 = input1
+x[2] = (a * x[1] + b) % 10001 = (a * input1 + b) % 10001
+x[3] = (a * x[2] + b) % 10001 = input2
+x[4] = (a * x[3] + b) % 10001 = (a * input2 + b) % 10001
+x[5] = (a * x[4] + b) % 10001 = input3
+x[6] = (a * x[5] + b) % 10001 = (a * input3 + b) % 10001
+
+input2 = (a * (a * input1 + b) + b) % 10001
+input3 = (a * (a * input2 + b) + b) % 10001
+
+input2 = (a * a * input1 + a * b + b) % 10001
+input3 = (a * a * input2 + a * b + b) % 10001
+
+solve mod 137, solve mod 73, combine with chinese remainder theorem?
