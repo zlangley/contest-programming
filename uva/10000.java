@@ -4,6 +4,7 @@ import java.util.Queue;
 import java.util.Scanner;
 
 // Longest Paths.
+// Longest path in a DAG from a source.
 class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);

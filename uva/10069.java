@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.math.BigInteger;
 
 // Distinct Subsequences.
+// Count the number of distinct subsequences in two strings.
 class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);

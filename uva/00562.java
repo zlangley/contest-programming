@@ -1,5 +1,7 @@
 import java.util.*;
 
+// Diving coins
+// Split coins between people to minimize difference. (Subset sum.)
 class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -25,7 +27,6 @@ class Main {
                         dp[i][j] = dp[i-1][j];
                     }
                 }
-                // System.out.println(Arrays.toString(dp[i]));
             }
 
             int closestVal = sum;
