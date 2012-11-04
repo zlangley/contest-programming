@@ -13,7 +13,7 @@ public class MinimumSpanningTree {
             int next = nextVertex(dist, visited);
             visited[next] = true;
 
-            for (int v : g.getNeighbors(next)) {
+            for (int v : g.neighbors(next)) {
                 int d = g.getEdgeWeight(next, v);
                 if (dist[v] > d) {
                     dist[v] = d;

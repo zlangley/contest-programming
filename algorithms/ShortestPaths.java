@@ -38,7 +38,7 @@ public class ShortestPaths {
         while (!q.isEmpty()) {
             Vertex min = q.pollFirst();
             int u = min.v;
-            for (int v : g.getNeighbors(min.v)) {
+            for (int v : g.neighbors(min.v)) {
                 int newDist = d[u] + g.getEdgeWeight(u, v);
                 if (d[v] > newDist) {
                     d[v] = newDist;
@@ -70,7 +70,7 @@ public class ShortestPaths {
 
         for (int i = 0; i < g.vertexCount() - 1; i++) {
             for (int v = 0; v < g.vertexCount(); v++) {
-                for (int u : g.getNeighbors(v)) {
+                for (int u : g.neighbors(v)) {
                     if (d[u] > d[v] + g.getEdgeWeight(u, v)) {
                         d[u] = d[v] + g.getEdgeWeight(u, v);
                         pi[u] = v;

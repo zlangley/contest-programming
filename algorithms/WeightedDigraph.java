@@ -12,7 +12,7 @@ public class WeightedDigraph {
             adjMatrix[i] = g.adjMatrix[i].clone();
     }
 
-    public List<Integer> getNeighbors(int v) {
+    public List<Integer> neighbors(int v) {
         List<Integer> neighbors = new ArrayList<Integer>();
         for (int i = 0; i < adjMatrix.length; i++)
             if (adjMatrix[v][i] != 0)

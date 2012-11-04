@@ -4,17 +4,16 @@ public class MaxFlow {
     public static int edmondsKarp(WeightedDigraph g, int s, int t) {
         WeightedDigraph r = new WeightedDigraph(g);
 
-        while (true) {
+        while (pi[t] != -1) {
             // Find augmenting path with BFS.
-
             // Store capacity for this path.
             int[] maxCapacity = new int[g.vertexCount()];
             maxCapacity[s] = Integer.MAX_VALUE;
 
             // Remember path.
-            int[] parent = new int[g.vertexCount()];
-            Arrays.fill(parent, -1);
-            parent[s] = s;
+            int[] pi = new int[g.vertexCount()];
+            Arrays.fill(pi, -1);
+            pi[s] = s;
 
             // BFS.
             Queue<Integer> q = new LinkedList<Integer>();
@@ -22,19 +21,19 @@ public class MaxFlow {
             while (!q.isEmpty()) {
                 int u = q.poll();
 
-                for (int v : r.getNeighbors(u)) {
+                for (int v : r.neighbors(u)) {
                     // Check residual graph for capacity remaining.
                     int capacityLeft = r.getEdgeWeight(u, v);
-                    if (capacityLeft > 0 && parent[v] == -1) {
-                        parent[v] = u;
+                    if (capacityLeft > 0 && pi[v] == -1) {
+                        pi[v] = u;
                         maxCapacity[v] = Math.min(maxCapacity[u], capacityLeft);
 
                         if (v != t)
                             q.offer(v);
                         else {
                             // If we made it to t, update the risudual graph.
-                            while (parent[v] != v) {
-                                int w = parent[v];
+                            while (pi[v] != v) {
+                                int w = pi[v];
                                 if (!r.hasEdge(v, w))
                                     r.addEdge(v, w, 0);
 
@@ -48,30 +47,14 @@ public class MaxFlow {
                     }
                 }
             }
-            if (parent[t] == -1) {
-                // Couldn't find an augmenting path?  Then we're done.  Compute flow.
-                int sum = 0;
-                for (int u : r.getNeighbors(t))
-                    sum += r.getEdgeWeight(t, u);
-                return sum;
-            }
         }
-    }
 
-
-    public static void main(String[] args) {
-        WeightedDigraph g = new WeightedDigraph(6);
-
-        g.addEdge(0, 1, 3);
-        g.addEdge(0, 2, 3);
-        g.addEdge(1, 3, 3);
-        g.addEdge(1, 2, 2);
-        g.addEdge(2, 4, 2);
-        g.addEdge(3, 4, 4);
-        g.addEdge(3, 5, 2);
-        g.addEdge(4, 5, 3);
-
-        int maxFlow = edmondsKarp(g, 0, 5);
-        System.out.println(maxFlow);
+        // Couldn't find an augmenting path?  Then we're done.  Compute flow.
+        int sum = 0;
+        for (int u : r.neighbors(t)) {
+            // If t wasn't truly a sink, subtract off its original out-going edges.
+            sum += (r.getEdgeWeight(t, u) - g.getEdgeWeight(t, u));
+        }
+        return sum;
     }
 }

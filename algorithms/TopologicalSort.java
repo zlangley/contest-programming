@@ -14,7 +14,7 @@ public class TopologicalSort {
     public static void topologicalVisit(Graph g, int root, List<Integer> sorted, boolean[] visited) {
         if (!visited[root]) {
             visited[root] = true;
-            for (int v : g.getNeighbors(root))
+            for (int v : g.neighbors(root))
                 topologicalVisit(g, v, sorted, visited);
 
             sorted.add(0, root);
